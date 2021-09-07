@@ -1,0 +1,133 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Abs?!</title>
+  <meta name="description" content="Spotify Song Mystery Box!">
+  <meta name="author" content="SitePoint">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <style>
+      body {
+        background-color: black;
+        color:white;
+        font-family: 'DM Sans';
+      }
+      .header {
+        padding-top: 3rem;
+        text-align: center;
+      }
+      .content {
+        padding-top: 10rem;
+        text-align: center;
+      }
+      .btn-cnt {
+        padding-top: 3rem;
+        text-align: center;
+      }
+      .copy-btn {
+        background-color: white;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        color: black;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      #secondary-content {
+          display: none;
+      }
+      #final-content {
+          display: none;
+      }
+      .inp {
+          height: 30px;
+          width: 14rem;
+          border-radius: 20px;
+          text-align: center;
+      }
+      .inp:focus {
+        outline-width: 0;
+      }
+      .alert {
+          color: red;
+          font-weight: bold;
+      }
+      .top-pad {
+          padding-top: 10px;
+      }
+      .q {
+          padding-top: 10rem;
+          text-align: center;
+      }
+  </style>
+
+
+</head>
+
+<body>
+  <div>
+      <h1 class='header'>Witness them Galactic Abs!</h1>
+      <div class='content' id='active-content'>
+        <div class='btn-cnt'>
+          <span class='copy-btn' onclick="switchToSecond()">Reveal!</span>
+        </div>
+      </div>
+      <div id='secondary-content'>
+        <div class='content'>
+            <h3>Enter Your Password</h3>
+            <input class='inp' type='password'/>&nbsp;&nbsp;
+            <i class="fas fa-eye" onclick="reveal()"></i>
+            <br>
+            <div class='top-pad'>
+                <span class='alert'>&nbsp;</span>
+            </div>
+            <div class='btn-cnt'>
+              <span class='copy-btn' onclick="checkPW()">Enter</span>
+            </div>
+        </div>
+      </div>
+      <div id='final-content'>
+        <h2 class='q'>Oh You'd like to see that now. Wont you?    :P</h2>
+      </div>
+  </div>
+  <script>
+      clickCount=0;
+      last='';
+      function switchToSecond() {
+        document.querySelector('#active-content').style.display = 'none'
+        document.querySelector('#secondary-content').style.display = 'block'
+      }
+      function switchToFinal() {
+        document.querySelector('#secondary-content').style.display = 'none'
+        document.querySelector('#final-content').style.display = 'block'
+      }
+      function checkPW() {
+        const el = document.querySelector('.inp')
+        if(el.value === 'lebenslangerschicksalsschatz') switchToFinal()
+        else {
+            if(last === el.value) document.querySelector('.alert').textContent = 'Yes. spamming should do the trick'
+            else document.querySelector('.alert').textContent = 'Incorrect Password'
+        }
+        last = el.value
+      }
+      function reveal() {
+          if(window.clickCount === 0) document.querySelector('.alert').textContent = 'Ofc, you wanna peak...'
+          else if(window.clickCount === 1)  document.querySelector('.alert').textContent = 'Stop Clicking me silly...'
+          else if(window.clickCount === 3)  document.querySelector('.alert').textContent = '...'
+          else if(window.clickCount === 5)  document.querySelector('.alert').textContent = 'Are you for real?'
+          else if(window.clickCount === 7)  document.querySelector('.alert').textContent = 'STOP!!!'
+          else if(window.clickCount > 10)  document.querySelector('.alert').textContent = 'Geez Fine... Its his life long treasure of destiny or some shit.'
+          window.clickCount++
+      }
+  </script>
+</body>
+</html>
